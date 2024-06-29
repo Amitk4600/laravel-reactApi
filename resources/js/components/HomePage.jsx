@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AutoFetch from "./AutoFetch";
 
 const HomePage = () => {
     const [posts, setPosts] = useState([]);
@@ -23,6 +24,10 @@ const HomePage = () => {
     const handleShowAll = () => {
         fetchPosts();
     };
+
+    // fetch data after 2 seconds from data base
+    AutoFetch(fetchPosts,2000);
+
     return (
         <div>
             <h1>Hello welcome to home page </h1>
@@ -36,7 +41,8 @@ const HomePage = () => {
                   <table border="1" className="table table-info ">
                     <thead className="table table-warning ">
                       <tr >
-                        <th>First Name</th>
+                        <th>id</th>
+                        <th>FiName</th>
                         <th>Last Name</th>
                         <th>email</th>
                         <th>phone</th>
@@ -45,6 +51,7 @@ const HomePage = () => {
                     <tbody className="table table-dark table-striped ">
                       {posts.map((post) => (
                         <tr key={post.id}>
+                          <td>{post.id}</td>
                           <td>{post.firstname}</td>
                           <td>{post.lastname}</td>
                           <td>{post.email}</td>
